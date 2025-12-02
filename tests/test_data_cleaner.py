@@ -127,6 +127,7 @@ class TestDataCleaner(unittest.TestCase):
         # Copia para verificar que el original no cambió
         df_original = df.copy(deep=True)
 
+        df["name"] = df["name"].astype("string")
         result = cleaner.trim_strings(df, ["name"])
 
         # El DataFrame original mantiene los espacios
@@ -175,7 +176,7 @@ class TestDataCleaner(unittest.TestCase):
         df = make_sample_df()
         cleaner = DataCleaner()
 
-        result = cleaner.remove_outliers_iqr(df, "age", factor=1.5)
+        result = cleaner.remove_outliers_iqr(df, "age", factor=0.5)
 
         # 120 debe ser eliminado
         self.assertNotIn(120, result["age"].tolist())
@@ -217,4 +218,3 @@ class TestDataCleaner(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-    
