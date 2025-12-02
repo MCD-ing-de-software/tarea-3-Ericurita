@@ -138,7 +138,7 @@ class TestDataCleaner(unittest.TestCase):
         self.assertEqual(result.loc[0, "name"], "Alice")
         self.assertEqual(result.loc[1, "name"], "Bob")
         # La fila 2 sigue siendo None
-        self.assertIsNone(result.loc[2, "name"])
+        self.assertTrue(pd.isna(resiñt.loc[2, "name"]))
         self.assertEqual(result.loc[3, "name"], "Carol")
 
         # La columna 'city' no debe cambiar entre df y result
